@@ -55,7 +55,7 @@ export const __toInteger = (num: string) => {
 }
 
 export const __toPercent = (num: string) => {
-    return (Number(num) * 100).toString();
+    return (Number(num) * 100).toString() + "%";
 }
 
 export const __isZero = (num: string) => {

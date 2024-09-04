@@ -33,11 +33,20 @@
     "browser": "dist/web3-bignumber.min.js",
     "keywords": [
         "web3",
-        "errors",
+        "crypto",
+        "number",
+        "bignumber",
+        "big",
+        "big int",
+        "integer",
+        "big integer",
         "evm",
         "ethereum",
         "blockchain",
-        "extract"
+        "arithmatic",
+        "operations",
+        "math",
+        "web3 number"
     ],
     "author": "Moazzam Ahmed",
     "license": "ISC",
