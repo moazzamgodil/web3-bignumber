@@ -22,7 +22,7 @@
         "build:cjs": "tsc --build tsconfig.cjs.json && tsc-alias -p tsconfig.cjs.json && echo {\"type\": \"commonjs\"} > ./lib/commonjs/package.json",
         "build:esm": "tsc --build tsconfig.esm.json && tsc-alias -p tsconfig.esm.json && echo {\"type\": \"module\"} > ./lib/esm/package.json",
         "build:types": "tsc --build tsconfig.types.json",
-        "esbuild:browser": "esbuild lib/commonjs/index.js --bundle --minify --outfile=dist/web3-bignumber.min.js",
+        "esbuild:browser": "esbuild src/index.ts --bundle --minify --outfile=dist/web3-bignumber.min.js",
         "build:browser": "browserify lib/commonjs/index.js > dist/web3-bignumber.min.js",
         "build:all": "npm run build:cjs && npm run build:esm && npm run build:types && npm run esbuild:browser"
     },
