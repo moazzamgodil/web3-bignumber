@@ -1,45 +1,5 @@
+import "./prototype";
 import { __add, __div, __isEqual, __isGreaterThan, __isGreaterThanEquals, __isLessThan, __isLessThanEquals, __isNegative, __isZero, __max, __min, __mul, __sub, __toBig, __toBigInt, __toCommaSeparated, __toCompactNumber, __toInteger, __toPercent, __toSmall, formatting } from "./helper";
-
-declare global {
-    interface String {
-        toBigInt(): bigint;
-        toCommaSeparated(): string;
-        toCompactNumber(): string;
-        toPercent(): string;
-        toInteger(): number;
-        toInteger(): number;
-        isZero(): boolean;
-        isNegative(): boolean;
-    }
-}
-
-String.prototype.toBigInt = function (): bigint {
-    return __toBigInt(this.toString());
-};
-
-String.prototype.toCommaSeparated = function (): string {
-    return __toCommaSeparated(this.toString());
-};
-
-String.prototype.toCompactNumber = function (): string {
-    return __toCompactNumber(this.toString());
-};
-
-String.prototype.toPercent = function (): string {
-    return __toPercent(this.toString());
-};
-
-String.prototype.toInteger = function (): number {
-    return __toInteger(this.toString());
-};
-
-String.prototype.isZero = function (): boolean {
-    return __isZero(this.toString());
-};
-
-String.prototype.isNegative = function (): boolean {
-    return __isNegative(this.toString());
-};
 
 export const Web3BigNumber = (number: bigint | string | number) => {
 
@@ -81,7 +41,7 @@ export const Web3BigNumber = (number: bigint | string | number) => {
         return __isNegative(num);
     }
 
-    const eq = (num2: number | string | bigint) => {
+    const equals = (num2: number | string | bigint) => {
         return __isEqual(num, num2);
     }
 
@@ -105,15 +65,15 @@ export const Web3BigNumber = (number: bigint | string | number) => {
         return __add(num, num2);
     }
 
-    const sub = (num2: number | string | bigint) => {
+    const subtract = (num2: number | string | bigint) => {
         return __sub(num, num2);
     }
 
-    const mul = (num2: number | string | bigint) => {
+    const multiply = (num2: number | string | bigint) => {
         return __mul(num, num2);
     }
 
-    const div = (num2: number | string | bigint) => {
+    const divide = (num2: number | string | bigint) => {
         return __div(num, num2);
     }
 
@@ -123,6 +83,10 @@ export const Web3BigNumber = (number: bigint | string | number) => {
 
     const min = (num2: number | string | bigint) => {
         return __min(num, num2);
+    }
+
+    const value = () => {
+        return num;
     }
 
     return {
@@ -135,17 +99,18 @@ export const Web3BigNumber = (number: bigint | string | number) => {
         toInteger,
         isZero,
         isNegative,
-        eq,
+        equals,
         gt,
         gte,
         lt,
         lte,
         add,
-        sub,
-        mul,
-        div,
+        subtract,
+        multiply,
+        divide,
         max,
-        min
+        min,
+        value
     }
 }
 
