@@ -1,5 +1,5 @@
 import "./prototype";
-export declare const Web3BigNumber: (number: bigint | string | number) => {
+declare const Web3BigNumber: (number: bigint | string | number) => {
     toBig: (decimals?: number) => string;
     toSmall: (decimals?: number) => string;
     toBigInt: () => bigint;
@@ -46,6 +46,9 @@ declare global {
         min(num2: number | string | bigint): string;
         value(): string;
     }
-    function Web3BigNumber(number: bigint | string | number): IWeb3BigNumber;
+    interface Window {
+        Web3BigNumber(number: bigint | string | number): IWeb3BigNumber;
+    }
 }
+export { Web3BigNumber };
 //# sourceMappingURL=web3numbers.d.ts.map
