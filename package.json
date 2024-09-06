@@ -1,6 +1,6 @@
 {
     "name": "web3-bignumber",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Web3 BigNumber is an extensive library for managing large number for Javascript and Node.js. Useful for web3 development.",
     "main": "./lib/commonjs/index.js",
     "module": "./lib/esm/index.js",
