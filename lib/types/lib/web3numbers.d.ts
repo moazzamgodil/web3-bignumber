@@ -21,6 +21,7 @@ declare const Web3BigNumber: (number: bigint | string | number) => {
     max: (num2: number | string | bigint) => string;
     min: (num2: number | string | bigint) => string;
     value: () => string;
+    trimDecimalPlaces: (decimalPlaces: number | string | bigint) => string;
 };
 declare global {
     interface IWeb3BigNumber {
@@ -45,6 +46,7 @@ declare global {
         max(num2: number | string | bigint): string;
         min(num2: number | string | bigint): string;
         value(): string;
+        trimDecimalPlaces(decimalPlaces: number | string | bigint): string;
     }
     interface Window {
         Web3BigNumber(number: bigint | string | number): IWeb3BigNumber;

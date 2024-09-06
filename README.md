@@ -128,6 +128,12 @@ Web3BigNumber("1000000").toCompactNumber();
 Web3BigNumber("0.123").toPercent();
 // Output: 12.3%
 ```
+
+#### Fixed Decimal Places
+```ts
+Web3BigNumber("12.34567").trimDecimalPlaces(2);
+// Output: 12.35
+```
 ---
 ### Conditional Check
 ---

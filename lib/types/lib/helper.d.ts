@@ -19,4 +19,5 @@ export declare const __mul: (num: string, num2: number | string | bigint) => str
 export declare const __div: (num: string, num2: number | string | bigint) => string;
 export declare const __max: (num: string, num2: number | string | bigint) => string;
 export declare const __min: (num: string, num2: number | string | bigint) => string;
+export declare const __trimDecimalPlaces: (num: string, decimalPlaces: number | string | bigint) => string;
 //# sourceMappingURL=helper.d.ts.map

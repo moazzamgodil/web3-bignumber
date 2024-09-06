@@ -35,28 +35,28 @@ export const __toCompactNumber = (number: string | number | bigint): string => {
         unitIndex++;
     }
 
-    return num.toFixed(1).replace(/\.0$/, '') + units[unitIndex];
+    return num.toFixed(1).replace(/\.0$/, "") + units[unitIndex];
 }
 
 export const __toBig = (num: string, decimals: number = 18): string => {
-    if (isNaN(Number(num)) || isNaN(decimals)) {
+    if (isNaN(Number(num)) || isNaN(decimals) || Number(num) == 0) {
         return "0";
     }
     return multiply(num, decimals);
 }
 
 export const __toSmall = (num: string, decimals: number = 18): string => {
-    if (isNaN(Number(num)) || isNaN(decimals)) {
+    if (isNaN(Number(num)) || isNaN(decimals) || Number(num) == 0) {
         return "0";
     }
     return divide(num, decimals);
 }
 
 export const __toBigInt = (num: string): bigint => {
-    if (Number(num) < 1 || isNaN(Number(num))) {
+    if (isNaN(Number(num)) || Number(num) == 0) {
         return BigInt(0);
     }
-    return BigInt(num);
+    return BigInt(Math.round(Number(num)));
 }
 
 export const __toInteger = (num: string): number => {
@@ -65,7 +65,7 @@ export const __toInteger = (num: string): number => {
 
 export const __toPercent = (num: string): string => {
     if (isNaN(Number(num))) {
-        return "0";
+        return "0%";
     }
     return (Number(num) * 100).toString() + "%";
 }
@@ -120,10 +120,11 @@ export const __isLessThanEquals = (num: string, num2: number | string | bigint):
 }
 
 export const __toCommaSeparated = (num: string): string => {
-    if (isNaN(Number(num))) {
+    if (isNaN(Number(num)) || Number(num) == 0) {
         return "0";
     }
-    const arr = num.toString().split("").reverse();
+    const removedDP = num.toString().split(".");
+    const arr = removedDP[0].toString().split("").reverse();
     let index = 0;
     const formatted = arr.map((v, i) => {
         if (index > 1) {
@@ -135,28 +136,40 @@ export const __toCommaSeparated = (num: string): string => {
         index++;
         return v;
     });
-    return formatted.reverse().join("");
+    return formatted.reverse().join("").concat(removedDP.length > 1 ? "." + removedDP[1] : "");
 }
 
 export const __add = (num: string, num2: number | string | bigint): string => {
+    if (isNaN(Number(num)) || isNaN(Number(num2))) {
+        return "0"
+    }
     const num1 = Number(num);
     num2 = Number(num2);
     return formatting(num1 + num2);
 }
 
 export const __sub = (num: string, num2: number | string | bigint): string => {
+    if (isNaN(Number(num)) || isNaN(Number(num2))) {
+        return "0"
+    }
     const num1 = Number(num);
     num2 = Number(num2);
     return formatting(num1 - num2);
 }
 
 export const __mul = (num: string, num2: number | string | bigint): string => {
+    if (isNaN(Number(num)) || isNaN(Number(num2))) {
+        return "0"
+    }
     const num1 = Number(num);
     num2 = Number(num2);
     return formatting(num1 * num2);
 }
 
 export const __div = (num: string, num2: number | string | bigint): string => {
+    if (isNaN(Number(num)) || isNaN(Number(num2))) {
+        return "0"
+    }
     const num1 = Number(num);
     num2 = Number(num2);
     return formatting(num1 / num2);
@@ -172,4 +185,25 @@ export const __min = (num: string, num2: number | string | bigint): string => {
     const num1 = Number(num);
     num2 = Number(num2);
     return formatting(num1 < num2 ? num1 : num2);
+}
+
+export const __trimDecimalPlaces = (num: string, decimalPlaces: number | string | bigint): string => {
+    if (isNaN(Number(num)) || Number(num) == 0 || isNaN(Number(decimalPlaces)) || Number(decimalPlaces) < 0) {
+        return "0";
+    }
+
+    const multiplier = Math.pow(10, Number(decimalPlaces));
+    const roundedNum = Math.round(Number(num) * multiplier) / multiplier;
+
+    const result = roundedNum.toString();
+
+    const parts = result.split(".");
+    const integerPart = parts[0];
+    let fractionalPart = parts.length > 1 ? parts[1] : "";
+
+    while ((fractionalPart.length) < Number(decimalPlaces)) {
+        fractionalPart += "0";
+    }
+
+    return Number(decimalPlaces) > 0 ? `${integerPart}.${fractionalPart}` : integerPart;
 }

@@ -19,6 +19,7 @@ declare global {
         divide(num2: number | string | bigint): string;
         max(num2: number | string | bigint): string;
         min(num2: number | string | bigint): string;
+        trimDecimalPlaces(decimalPlaces: number | string | bigint): string;
     }
     interface Number {
         toBigInt(): bigint;
@@ -39,6 +40,7 @@ declare global {
         divide(num2: number | string | bigint): string;
         max(num2: number | string | bigint): string;
         min(num2: number | string | bigint): string;
+        trimDecimalPlaces(decimalPlaces: number | string | bigint): string;
     }
     interface BigInt {
         toBigInt(): bigint;
@@ -59,5 +61,6 @@ declare global {
         divide(num2: number | string | bigint): string;
         max(num2: number | string | bigint): string;
         min(num2: number | string | bigint): string;
+        trimDecimalPlaces(decimalPlaces: number | string | bigint): string;
     }
 }

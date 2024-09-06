@@ -1,4 +1,4 @@
-import { __add, __div, __isEqual, __isGreaterThan, __isGreaterThanEquals, __isLessThan, __isLessThanEquals, __isNegative, __isZero, __max, __min, __mul, __sub, __toBigInt, __toCommaSeparated, __toCompactNumber, __toInteger, __toPercent } from "./helper";
+import { __add, __div, __isEqual, __isGreaterThan, __isGreaterThanEquals, __isLessThan, __isLessThanEquals, __isNegative, __isZero, __max, __min, __mul, __sub, __toBigInt, __toCommaSeparated, __toCompactNumber, __toInteger, __toPercent, __trimDecimalPlaces } from "./helper";
 
 export {};
 
@@ -22,6 +22,7 @@ declare global {
         divide(num2: number | string | bigint): string;
         max(num2: number | string | bigint): string;
         min(num2: number | string | bigint): string;
+        trimDecimalPlaces(decimalPlaces: number | string | bigint): string;
     }
     interface Number {
         toBigInt(): bigint;
@@ -42,6 +43,7 @@ declare global {
         divide(num2: number | string | bigint): string;
         max(num2: number | string | bigint): string;
         min(num2: number | string | bigint): string;
+        trimDecimalPlaces(decimalPlaces: number | string | bigint): string;
     }
     interface BigInt {
         toBigInt(): bigint;
@@ -62,6 +64,7 @@ declare global {
         divide(num2: number | string | bigint): string;
         max(num2: number | string | bigint): string;
         min(num2: number | string | bigint): string;
+        trimDecimalPlaces(decimalPlaces: number | string | bigint): string;
     }
 }
 
@@ -138,6 +141,10 @@ String.prototype.min = function (num2: number | string | bigint): string {
     return __min(this.toString(), num2);
 };
 
+String.prototype.trimDecimalPlaces = function (decimalPlaces: number | string | bigint): string {
+    return __trimDecimalPlaces(this.toString(), decimalPlaces);
+};
+
 // NUMBER
 Number.prototype.toBigInt = function (): bigint {
     return __toBigInt(this.toString());
@@ -211,6 +218,10 @@ Number.prototype.min = function (num2: number | string | bigint): string {
     return __min(this.toString(), num2);
 };
 
+Number.prototype.trimDecimalPlaces = function (decimalPlaces: number | string | bigint): string {
+    return __trimDecimalPlaces(this.toString(), decimalPlaces);
+};
+
 // BIG INTEGER
 BigInt.prototype.toBigInt = function (): bigint {
     return __toBigInt(this.toString());
@@ -282,4 +293,8 @@ BigInt.prototype.max = function (num2: number | string | bigint): string {
 
 BigInt.prototype.min = function (num2: number | string | bigint): string {
     return __min(this.toString(), num2);
+};
+
+BigInt.prototype.trimDecimalPlaces = function (decimalPlaces: number | string | bigint): string {
+    return __trimDecimalPlaces(this.toString(), decimalPlaces);
 };

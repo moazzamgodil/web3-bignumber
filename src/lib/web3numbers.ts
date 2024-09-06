@@ -1,5 +1,5 @@
 import "./prototype";
-import { __add, __div, __isEqual, __isGreaterThan, __isGreaterThanEquals, __isLessThan, __isLessThanEquals, __isNegative, __isZero, __max, __min, __mul, __sub, __toBig, __toBigInt, __toCommaSeparated, __toCompactNumber, __toInteger, __toPercent, __toSmall, formatting } from "./helper";
+import { __add, __div, __isEqual, __isGreaterThan, __isGreaterThanEquals, __isLessThan, __isLessThanEquals, __isNegative, __isZero, __max, __min, __mul, __sub, __toBig, __toBigInt, __toCommaSeparated, __toCompactNumber, __toInteger, __toPercent, __toSmall, __trimDecimalPlaces, formatting } from "./helper";
 
 const Web3BigNumber = (number: bigint | string | number) => {
 
@@ -89,6 +89,10 @@ const Web3BigNumber = (number: bigint | string | number) => {
         return num;
     }
 
+    const trimDecimalPlaces = (decimalPlaces: number | string | bigint) => {
+        return __trimDecimalPlaces(num, decimalPlaces);
+    }
+
     return {
         toBig,
         toSmall,
@@ -110,7 +114,8 @@ const Web3BigNumber = (number: bigint | string | number) => {
         divide,
         max,
         min,
-        value
+        value,
+        trimDecimalPlaces
     }
 }
 
@@ -137,6 +142,7 @@ declare global {
         max(num2: number | string | bigint): string;
         min(num2: number | string | bigint): string;
         value(): string;
+        trimDecimalPlaces(decimalPlaces: number | string | bigint): string;
     }
 
     interface Window {
