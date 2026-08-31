@@ -61,7 +61,7 @@
     "homepage": "https://github.com/moazzamgodil/web3-bignumber#readme",
     "devDependencies": {
         "@types/node": "^20.11.13",
-        "esbuild": "0.25.0",
+        "esbuild": "0.28.1",
         "tsc-alias": "^1.8.10",
         "typescript": "^5.3.3"
     }
